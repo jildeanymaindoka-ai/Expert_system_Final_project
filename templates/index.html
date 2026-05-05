@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JESA UNKLAB</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <div class="logo-icon">🤖</div>
+                    <div class="logo-text">
+                        <h2>JESA UNKLAB</h2>
+                        <span>Jarvis</span>
+                    </div>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" data-section="chat">
+                    <span class="nav-icon">💬</span>
+                    Obrolan
+                </a>
+                <a href="#" class="nav-item" data-section="knowledge">
+                    <span class="nav-icon">📚</span>
+                    Base Pengetahuan
+                </a>
+                <a href="#" class="nav-item" data-section="settings">
+                    <span class="nav-icon">⚙️</span>
+                    Pengaturan
+                </a>
+            </nav>
+
+            <div class="data-sources">
+                <h3>Loaded Data</h3>
+                <div class="source-item">
+                    <span class="source-icon">📄</span>
+                    <span class="source-name">BUKU-PANDUAN-UNKLAB-2024.pdf</span>
+                </div>
+                <div class="source-item">
+                    <span class="source-icon">🌐</span>
+                    <span class="source-name">Official Website UNKLAB &</br>FILKOM UNKLAB</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <header class="top-bar">
+                <h1>Jarvis Environment System Academic Universitas Klabat</h1>
+                <div class="status-indicator">
+                    <span class="status-dot ready"></span>
+                    <span class="status-text">Ready</span>
+                </div>
+            </header>
+
+            <!-- Chat Section -->
+            <section class="chat-section active" id="chat-section">
+                <div class="chat-container">
+                    <div class="chat-messages" id="chat-messages">
+                        <div class="message ai-message">
+                            <div class="message-avatar">🤖</div>
+                            <div class="message-content">
+                                <p>Halo! Saya adalah Jarvis. Saya dapat membantu Anda dengan pertanyaan tentang kebijakan universitas, prosedur, dan informasi dari dokumen resmi serta situs web kami. Bagaimana saya dapat membantu Anda hari ini?</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="typing-indicator" id="typing-indicator" style="display: none;">
+                        <div class="typing-dots">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <span>Jarvis sedang berpikir...</span>
+                    </div>
+                </div>
+
+                <!-- Input Area -->
+                <div class="input-area">
+                    <div class="input-container">
+                        <input type="text" id="message-input" placeholder="Bertanya kepada JESA UNKLAB..." autocomplete="off">
+                        <button id="send-btn" class="send-btn" disabled>
+                            <span class="send-icon">➤</span>
+                        </button>
+                    <div class="input-options">
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="pdf-only-toggle">
+                        </label>
+                    </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Knowledge Base Section -->
+            <section class="knowledge-section" id="knowledge-section">
+                <div class="knowledge-header">
+                    <h2>Base Pengetahuan</h2>
+                </div>
+                <div class="documents-list">
+                    <div class="document-item">
+                        <div class="doc-icon">📄</div>
+                        <div class="doc-info">
+                            <h4>BUKU-PANDUAN-UNKLAB-2024.pdf</h4>
+                            <p>University guide and policies</p>
+                            <span class="doc-size">2.3 MB</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="documents-list">
+                    <div class="document-item">
+                        <div class="doc-icon">🌐</div>
+                        <div class="doc-info">
+                            <h4>Website Official UNKLAB dan FILKOM</h4>
+                            <p>University guide and policies</p>
+                            <span class="doc-size">6.7 kB</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Settings Section -->
+            <section class="settings-section" id="settings-section">
+                <h2>Pengaturan</h2>
+                <div class="settings-group">
+                    <h3>Tampilan</h3>
+                    <div class="setting-item">
+                        <span>Mode Gelap</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="dark-mode-toggle">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modals -->
+    <div class="modal" id="init-modal">
+        <div class="modal-content init-modal">
+            <div class="init-header">
+                <div class="init-logo">
+                    <div class="logo-icon">🚀</div>
+                    <h2>Selamat Datang di JESA UNKLAB</h2>
+                </div>
+                <p>Inisialisasi sistem dengan API Key Google Gemini Anda untuk memulai.</p>
+            </div>
+            <div class="init-form">
+                <div class="form-group">
+                    <label for="api-key-input">Google Gemini API Key</label>
+                    <input type="password" id="api-key-input" placeholder="Masukan API key Anda..." autocomplete="off">
+                    <small>Ambil API key anda di <a href="https://aistudio.google.com/app/apikey" target="_blank">Google AI Studio</a></small>
+                </div>
+                <button id="init-btn" class="init-btn">
+                    <span class="btn-text">Inisialisasi Sistem</span>
+                    <div class="btn-spinner" style="display: none;"></div>
+                </button>
+                <div id="init-status" class="init-status"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
